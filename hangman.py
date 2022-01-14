@@ -4,11 +4,10 @@ from sys import argv
 
 def main():
     # Load word bank
-    words = get_wordbank()
-    word = choice(words).strip()
-    print(word)
+    word = select_from_wordbank()
 
-def get_wordbank(wordbank='wordbank.csv'):
+
+def select_from_wordbank(wordbank='wordbank.csv'):
     '''
     Loads a csv file, and returns a list of words contained.
     Defaults to wordbank.csv but supports external csv files.
@@ -19,7 +18,8 @@ def get_wordbank(wordbank='wordbank.csv'):
         with open(wordbank, newline='') as csvfile:
             csv_words =  reader(csvfile)
             words = list(csv_words)[0]
-            return words
+            word = choice(words).strip()
+            return word
     except Exception as e:
         print(e)
         print("There above error occured while trying to load the wordbank..\nQuitting")

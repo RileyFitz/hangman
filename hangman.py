@@ -1,5 +1,6 @@
 from csv import reader
 from random import choice
+from sys import argv
 
 def main():
     # Load word bank
@@ -7,9 +8,14 @@ def main():
     for word in words:
         print(word)
 
-def get_wordbank():
+def get_wordbank(wordbank='wordbank.csv'):
+    '''
+    Loads a csv file, and returns a list of words contained. 
+    '''
     try:
-        with open('wordbank.csv', newline='') as csvfile:
+        if len(argv) > 1:
+            wordbank = argv[1]
+        with open(wordbank, newline='') as csvfile:
             csv_words =  reader(csvfile)
             words = list(csv_words)
             return words[0]

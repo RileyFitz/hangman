@@ -18,18 +18,25 @@ def play_game(word):
 
     while attempts < 6 and not win:
         print_hangman(attempts)
-        # print_blanks
-        curr_guess = validated_guess()
+        # print_blanks()
+        curr_guess = validated_guess(used)
+        unused.replace(curr_guess,'')
+        used += curr_guess
+        if not curr_guess in word:
+            attempts += 1
 
-def validated_guess():
+
+def validated_guess(used):
     '''
     Ensures that only a single letter can be returned as an attempted guess.
     '''
     while True:
         try:
-            inp = input().lower()
+            inp = input('Next guess: ').lower()
             if len(inp) > 1 or inp.isdigit():
                 print("Guess's must be a single letter. Please try again..")
+            elif inp in used:
+                print(f'You already guessed {inp}. Please try a different guess.')
             else:
                 return inp
         except Exception as e:

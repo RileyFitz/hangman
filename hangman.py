@@ -8,6 +8,7 @@ def main():
     # Load word bank
     word = select_from_wordbank()
     win = play_game(word)
+    print(win) # Testing.
 
 def play_game(word):
     # Initialize vars
@@ -15,16 +16,32 @@ def play_game(word):
     unused = ascii_lowercase
     attempts = 0
     win = False
+    message = ''
 
     while attempts < 6 and not win:
         print_hangman(attempts)
+        print(message)
         # print_blanks()
+        print(word) # For testing currently.
         curr_guess = validated_guess(used)
         unused.replace(curr_guess,'')
         used += curr_guess
         if not curr_guess in word:
             attempts += 1
+            message = f'The letter \"{curr_guess}\" is not in the word.'
+        else:
+            message = f'The letter \"{curr_guess}\" is in the word!'
+            win = check_win(word, used)
+    return win
 
+def check_win(word, used):
+    count = 0
+    for let in word:
+        if let in used:
+            count += 1
+    if count == len(word):
+        return True
+    return False
 
 def validated_guess(used):
     '''

@@ -1,5 +1,7 @@
 # Hangman
-This is a simple implementation of a hangman game designed in vanilla python.
+This is a simple implementation of a hangman game designed in vanilla python. While exclusively run in terminal, comes with a simple interface to aid in ease of game play.
+
+![Hangman interface image.](/images/hangman.png "Hangman interface.")
 
 ### Custom wordbanks/CSV's
 

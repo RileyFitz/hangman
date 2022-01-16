@@ -7,8 +7,16 @@ from string import ascii_lowercase
 def main():
     # Load word bank
     word = select_from_wordbank()
-    win = play_game(word)
-    print(win) # Testing.
+    win, attempts = play_game(word)
+    if not win:
+        print_hangman(attempts)
+        print('You didn\'t guess the word in time! Your man was hung! (⌣́_⌣̀)')
+        print(f'The word you were trying to guess was: {word.upper()}\n')
+        print('Try your skill in another game!')
+    else:
+        print_hangman(attempts)
+        print(f'You saved your man with {6-attempts} guesses remaining!\nCongratulations!\n')
+        print('Try your luck with another game!')
 
 def play_game(word):
     # Initialize vars
@@ -22,7 +30,6 @@ def play_game(word):
         print_hangman(attempts)
         print_info(word, used, unused)
         print(message)
-        print(word) # For testing currently.
         curr_guess = validated_guess(used)
         unused = unused.replace(curr_guess,'')
         used += curr_guess
@@ -32,7 +39,7 @@ def play_game(word):
         else:
             message = f'The letter \"{curr_guess}\" is in the word!'
             win = check_win(word, used)
-    return win
+    return win, attempts
 
 def print_info(word, used, unused):
     blanks_string = ''

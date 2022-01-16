@@ -1,8 +1,8 @@
 from csv import reader
-from random import choice
-from sys import argv
 from os import system
+from random import choice
 from string import ascii_lowercase
+from sys import argv
 
 def print_info(word, used, unused):
     '''

@@ -63,7 +63,7 @@ def validated_guess(used):
     while True:
         try:
             inp = input('Next guess: ').lower()
-            if len(inp) > 1 or inp.isdigit():
+            if len(inp) > 1 or inp not in ascii_lowercase:
                 print("Guess's must be a single letter. Please try again..")
             elif inp in used:
                 print(f'You already guessed {inp}. Please try a different guess.')

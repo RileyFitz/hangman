@@ -21,10 +21,10 @@ def play_game(word):
     while attempts < 6 and not win:
         print_hangman(attempts)
         print(message)
-        # print_blanks()
+        print_info(word, used, unused)
         print(word) # For testing currently.
         curr_guess = validated_guess(used)
-        unused.replace(curr_guess,'')
+        unused = unused.replace(curr_guess,'')
         used += curr_guess
         if not curr_guess in word:
             attempts += 1
@@ -33,6 +33,18 @@ def play_game(word):
             message = f'The letter \"{curr_guess}\" is in the word!'
             win = check_win(word, used)
     return win
+
+def print_info(word, used, unused):
+    blanks_string = ''
+    print(f'Remaining letters: {unused}')
+    print(f'Guessed letters: {used}')
+
+    for let in word:
+        if let in used:
+            blanks_string += f'{let} '
+        else:
+            blanks_string += '_ '
+    print(blanks_string)
 
 def check_win(word, used):
     count = 0
@@ -46,6 +58,7 @@ def check_win(word, used):
 def validated_guess(used):
     '''
     Ensures that only a single letter can be returned as an attempted guess.
+    Found issue where inputs such as '.,/' are accepted. Will need to fix.
     '''
     while True:
         try:

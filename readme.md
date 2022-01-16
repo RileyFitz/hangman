@@ -1,10 +1,29 @@
 # Hangman
-This is a simple implementation of a hangman game designed entirely by myself in vanilla python.
+This is a simple implementation of a hangman game designed in vanilla python.
 
-Comes with a library of words to be used by default, but supports external csv's being used for custom word lists.
-Simply pass the name of the csv as the first argument.
+### Custom wordbanks/CSV's
+
+This program supports custom wordbanks from external csv's, as long as they are in the same directory as hangman.py.
+
+This can be initialized as such:
+
 ```
 python3 hangman.py custom.csv
 ```
 
-Looking to expand it to multiple simple games soon, so repo name may change to reflect that.
+
+This does come with some caveats based off limitations of the vanilla csv loader in python.
+
+Files must be of the format:
+```
+apple,banana,cucumber,...
+```
+And **NOT** the more common format of:
+```
+apple
+banana
+cucumber
+...
+```
+
+A simple solution to generating a csv of the proper format, is to load your wordbank into a spreadsheet editor (Libre Calc, Google Sheets, or Microsoft Excel), and to transpose the column, then simply save or export to a csv file.

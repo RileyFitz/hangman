@@ -47,8 +47,10 @@ def validated_guess(used):
 
 def select_from_wordbank(wordbank='wordbank.csv'):
     '''
-    Loads a csv file, and returns a list of words contained.
+    Loads a csv file, and returns a single word to play the game with.
     Defaults to wordbank.csv but supports external csv files.
+
+    NOTE: Design of loader is constrained do to limitations of vanilla csv module. More notes in readme.
     '''
     try:
         if len(argv) > 1:

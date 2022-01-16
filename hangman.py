@@ -20,8 +20,8 @@ def play_game(word):
 
     while attempts < 6 and not win:
         print_hangman(attempts)
-        print(message)
         print_info(word, used, unused)
+        print(message)
         print(word) # For testing currently.
         curr_guess = validated_guess(used)
         unused = unused.replace(curr_guess,'')
@@ -41,10 +41,10 @@ def print_info(word, used, unused):
 
     for let in word:
         if let in used:
-            blanks_string += f'{let} '
+            blanks_string += f'{let.upper()} '
         else:
             blanks_string += '_ '
-    print(blanks_string)
+    print(f'\n{blanks_string}\n')
 
 def check_win(word, used):
     count = 0

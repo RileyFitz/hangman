@@ -1,5 +1,5 @@
 from csv import reader
-from os import system
+from os import system, name
 from random import choice
 from string import ascii_lowercase
 from sys import argv
@@ -66,11 +66,17 @@ def select_from_wordbank(wordbank='wordbank.csv'):
         print("There above error occured while trying to load the wordbank..\nQuitting")
         quit()
 
+def clear_screen():
+    if name == 'nt':
+        system('cls')
+    else:
+        system('clear')
+
 def print_hangman(guesses=0):
     '''
     I know the if's ain't pretty, it's what I got atm.
     '''
-    system('clear') # Only supports mac and linux systems.
+    clear_screen()
     head, torso, larm, rarm, lleg, rleg = '','',' ','','',''
 
     if guesses >= 1:

@@ -7,7 +7,10 @@ class ttt_board():
         self.board_state = [ [' '] * 3 for _ in range(3)]
 
     def print_board(self):
-        print('printing board')
+        for i in range(2):
+            print(f'{self.board_state[i][0]} | {self.board_state[i][1]} | {self.board_state[i][2]}')
+            print('__|___|__')
+        print(f'{self.board_state[2][0]} | {self.board_state[2][1]} | {self.board_state[2][2]}')
 
     def check_winner(self):
         player = 'X' if self.xTurn else 'O'

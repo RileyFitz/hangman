@@ -46,6 +46,12 @@ class ttt_board():
         if self.board_state[0][2] == self.board_state[1][1] == self.board_state[2][0] == player:
             self.winner = player
 
+        # Check stalemate
+        for i in range(len(self.board_state)):
+            for j in range(len(self.board_state[i]))
+                if self.board_state[i][j] in digits:
+                    self.winner = 'T'
+
     def initiate_game(self):
         '''
 

@@ -79,18 +79,19 @@ class ttt_board():
 
     def initiate_game(self):
         '''
-
         This starts an entire self hosted game.
         Currently there is no interupt built in.
         This function will progress to a completetion state.
-
         '''
         while self.winner == "":
             self.print_board()
             self.make_validated_move()
             self.check_winner()
             self.xTurn = not self.xTurn
+        self.print_board()
+        print('\n3 in a row!!!')
         print(f'The winner is {self.winner}!')
 
-game = ttt_board()
-game.initiate_game()
+if __name__=='__main__':
+    game = ttt_board()
+    game.initiate_game()

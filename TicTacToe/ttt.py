@@ -6,12 +6,13 @@ class ttt_board():
         self.xTurn = True
         self.winner = ""
         self.board_state = [["1","2","3"],["4","5","6"],["7","8","9"]]
+        self.clear_scr = True
 
-    def print_board(self, clear_scr=True):
+    def print_board(self):
         '''
-        Prints board in interface. clears screan by default.
+        Prints board in interface. Clears screen by default.
         '''
-        if clear_scr:
+        if self.clear_scr:
             self.clear_screen()
         for i in range(2):
             print(f'{self.board_state[i][0]} | {self.board_state[i][1]} | {self.board_state[i][2]}')
@@ -27,10 +28,8 @@ class ttt_board():
 
     def check_winner(self):
         '''
-        Need to add ability to set winner to TIE!!
-        Currently bugged, takes a full round to commence,
-            to validate winner and end game.
-            - Actually takes 2 rounds to complete now...
+        Checks all winning move possiblities, and for stalemate.
+        Changes winner accordingly.
         '''
         player = 'X' if self.xTurn else 'O'
         for i in range(3):
@@ -47,16 +46,17 @@ class ttt_board():
         if self.board_state[0][2] == self.board_state[1][1] == self.board_state[2][0] == player:
             self.winner = player
 
-        # Check stalemate
+        # Check stalemate.
         for i in range(len(self.board_state)):
             for j in range(len(self.board_state[i])):
                 if not self.board_state[i][j] in digits:
-                    return # Skip setting tie, if any exist
+                    return # Skip setting tie as there is a numeral available.
         self.winner = 'T'
 
     def make_validated_move(self):
         '''
-        something about this function
+        Retrieves and ensures a valid move in entered by the player.
+        Checks for valid numeral, and open space.
         '''
         player = 'X' if self.xTurn else 'O'
         accepted_chars = digits[1:10] # Returns string of digits 1-9.

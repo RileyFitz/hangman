@@ -5,7 +5,7 @@ class ttt_board():
     def __init__(self):
         self.xTurn = True
         self.winner = ""
-        self.board_state = [[1,2,3],[4,5,6],[7,8,9]]
+        self.board_state = [["1","2","3"],["4","5","6"],["7","8","9"]]
 
     def print_board(self, clear_scr=True):
         '''
@@ -23,6 +23,7 @@ class ttt_board():
             system('cls')
         else:
             system('clear')
+        print('\n')
 
     def check_winner(self):
         '''
@@ -48,23 +49,10 @@ class ttt_board():
 
         # Check stalemate
         for i in range(len(self.board_state)):
-            for j in range(len(self.board_state[i]))
-                if self.board_state[i][j] in digits:
-                    self.winner = 'T'
-
-    def initiate_game(self):
-        '''
-
-        This starts an entire self hosted game.
-        Currently there is no interupt built in.
-        This function will progress to a completetion state.
-
-        '''
-        while self.winner == "":
-            self.print_board()
-            self.check_winner()
-            self.make_validated_move()
-        print(f'The winner is {self.winner}!')
+            for j in range(len(self.board_state[i])):
+                if not self.board_state[i][j] in digits:
+                    return # Skip setting tie, if any exist
+        self.winner = 'T'
 
     def make_validated_move(self):
         '''
@@ -78,17 +66,31 @@ class ttt_board():
                 attempt = input()
                 if attempt in accepted_chars and len(attempt) == 1:
                     for i, x in enumerate(self.board_state):
-                        if int(attempt) in x:
+                        if attempt in x:
                             for j in range(len(x)):
-                                if x[j] == int(attempt):
+                                if x[j] == attempt:
                                     self.board_state[i][j] = player
-                                    self.xTurn = not self.xTurn # This may need to be executed elsewhere.
                                     return # Escape the while loop.
 
                 print(f'The value \'{attempt}\', is not valid. Try {accepted_chars}..')
             except Exception as e:
                 print(f'Huh... you were able to get the following error..\n{e}\n')
                 print(f'However, this is not valid. Try {accepted_chars}..')
+
+    def initiate_game(self):
+        '''
+
+        This starts an entire self hosted game.
+        Currently there is no interupt built in.
+        This function will progress to a completetion state.
+
+        '''
+        while self.winner == "":
+            self.print_board()
+            self.make_validated_move()
+            self.check_winner()
+            self.xTurn = not self.xTurn
+        print(f'The winner is {self.winner}!')
 
 game = ttt_board()
 game.initiate_game()

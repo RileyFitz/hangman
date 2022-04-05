@@ -15,9 +15,9 @@ class ttt_board():
         if self.clear_scr:
             self.clear_screen()
         for i in range(2):
-            print(f'{self.board_state[i][0]} | {self.board_state[i][1]} | {self.board_state[i][2]}')
-            print('__|___|__')
-        print(f'{self.board_state[2][0]} | {self.board_state[2][1]} | {self.board_state[2][2]}')
+            print(f' {self.board_state[i][0]} | {self.board_state[i][1]} | {self.board_state[i][2]}')
+            print(' __|___|__')
+        print(f' {self.board_state[2][0]} | {self.board_state[2][1]} | {self.board_state[2][2]}')
 
     def clear_screen(self):
         if name == 'nt':
@@ -62,7 +62,7 @@ class ttt_board():
         accepted_chars = digits[1:10] # Returns string of digits 1-9.
         while True:
             try:
-                print("Select space: ")
+                print(" Select space: ")
                 attempt = input()
                 if attempt in accepted_chars and len(attempt) == 1:
                     for i, x in enumerate(self.board_state):
@@ -72,10 +72,10 @@ class ttt_board():
                                     self.board_state[i][j] = player
                                     return # Escape the while loop.
 
-                print(f'The value \'{attempt}\', is not valid. Try {accepted_chars}..')
+                print(f' The value \'{attempt}\', is not valid. Try {accepted_chars}..')
             except Exception as e:
-                print(f'Huh... you were able to get the following error..\n{e}\n')
-                print(f'However, this is not valid. Try {accepted_chars}..')
+                print(f' Huh... you were able to get the following error..\n{e}\n')
+                print(f' However, this is not valid. Try {accepted_chars}..')
 
     def initiate_game(self):
         '''
@@ -89,8 +89,8 @@ class ttt_board():
             self.check_winner()
             self.xTurn = not self.xTurn
         self.print_board()
-        print('\n3 in a row!!!')
-        print(f'The winner is {self.winner}!')
+        print('\n 3 in a row!!!')
+        print(f' The winner is {self.winner}!')
 
 if __name__=='__main__':
     game = ttt_board()

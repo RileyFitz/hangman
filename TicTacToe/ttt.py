@@ -26,6 +26,9 @@ class ttt_board():
             system('clear')
         print('\n')
 
+    def toggle_clear_scr(self):
+        self.clear_scr = not self.clear_scr
+
     def check_winner(self):
         '''
         Checks all winning move possiblities, and for stalemate.

@@ -5,7 +5,7 @@ class ttt_board():
     def __init__(self):
         self.xTurn = True
         self.winner = ""
-        self.board_state = [["1","2","3"],["4","5","6"],["7","8","9"]]
+        self.board_state = ["1","2","3","4","5","6", "7","8","9"]
         self.clear_scr = True
 
     def print_board(self):
@@ -15,9 +15,9 @@ class ttt_board():
         if self.clear_scr:
             self.clear_screen()
         for i in range(2):
-            print(f' {self.board_state[i][0]} | {self.board_state[i][1]} | {self.board_state[i][2]}')
+            print(f' {self.board_state[i*3]} | {self.board_state[i*3+1]} | {self.board_state[i*3+2]}')
             print(' __|___|__')
-        print(f' {self.board_state[2][0]} | {self.board_state[2][1]} | {self.board_state[2][2]}')
+        print(f' {self.board_state[6]} | {self.board_state[7]} | {self.board_state[8]}')
 
     def clear_screen(self):
         if name == 'nt':
@@ -37,43 +37,35 @@ class ttt_board():
         player = 'X' if self.xTurn else 'O'
         for i in range(3):
             # Row check.
-            if self.board_state[i][0] == self.board_state[i][1] == self.board_state[i][2] == player:
+            if self.board_state[i*3] == self.board_state[i*3+1] == self.board_state[i*3+2] == player:
                 self.winner = player
             # Column check.
-            if self.board_state[0][i] == self.board_state[1][i] == self.board_state[2][i] == player:
+            if self.board_state[i] == self.board_state[i+3] == self.board_state[i+6] == player:
                 self.winner = player
 
         # Diagonals.
-        if self.board_state[0][0] == self.board_state[1][1] == self.board_state[2][2] == player:
+        if self.board_state[0] == self.board_state[4] == self.board_state[8] == player:
             self.winner = player
-        if self.board_state[0][2] == self.board_state[1][1] == self.board_state[2][0] == player:
+        if self.board_state[2] == self.board_state[4] == self.board_state[6] == player:
             self.winner = player
 
         # Check stalemate.
-        for i in range(len(self.board_state)):
-            for j in range(len(self.board_state[i])):
-                if not self.board_state[i][j] in digits:
-                    return # Skip setting tie as there is a numeral available.
+        for i, x in enumerate(self.board_state):
+            if x in digits:
+                return # Skip bc there are open spots.
         self.winner = 'T'
 
-    def make_validated_move(self):
+    def get_validated_move(self):
         '''
         Retrieves and ensures a valid move in entered by the player.
         Checks for valid numeral, and open space.
         '''
-        player = 'X' if self.xTurn else 'O'
         accepted_chars = digits[1:10] # Returns string of digits 1-9.
         while True:
             try:
-                print(" Select space: ")
-                attempt = input()
+                attempt = input("Select space: ")
                 if attempt in accepted_chars and len(attempt) == 1:
-                    for i, x in enumerate(self.board_state):
-                        if attempt in x:
-                            for j in range(len(x)):
-                                if x[j] == attempt:
-                                    self.board_state[i][j] = player
-                                    return # Escape the while loop.
+                    return int(attempt)-1
 
                 print(f' The value \'{attempt}\', is not valid. Try {accepted_chars}..')
             except Exception as e:
@@ -88,7 +80,8 @@ class ttt_board():
         '''
         while self.winner == "":
             self.print_board()
-            self.make_validated_move()
+            move = self.get_validated_move()
+            self.board_state[move] = 'X' if self.xTurn else 'O'
             self.check_winner()
             self.xTurn = not self.xTurn
         self.print_board()

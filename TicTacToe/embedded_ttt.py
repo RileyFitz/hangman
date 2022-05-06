@@ -49,6 +49,12 @@ class embedded_ttt_board(ttt_board):
         if self.board_state[2].winner == self.board_state[4].winner == self.board_state[6].winner == player:
             self.winner = player
 
+        # Check stalemate.
+        for i, x in enumerate(self.board_state):
+            if x.winner == '':
+                return # Skip bc there are open spots.
+        self.winner = 'T'
+
     def initiate_game(self):
         while self.winner == '':
             # print_board

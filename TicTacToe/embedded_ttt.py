@@ -71,5 +71,9 @@ class embedded_ttt_board(ttt_board):
             self.check_winner()
             # Change player
             self.xTurn = not self.xTurn
-        print('\n 3 in a row!!!')
+        print('\n 3 boards in a row!!!')
         print(f' The winner is {self.winner}!')
+
+if __name__=='__main__':
+    game = embedded_ttt_board()
+    game.initiate_game()

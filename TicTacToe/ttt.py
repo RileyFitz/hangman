@@ -65,7 +65,8 @@ class ttt_board():
             try:
                 attempt = input("Select space: ")
                 if attempt in accepted_chars and len(attempt) == 1:
-                    return int(attempt)-1
+                    if self.board_state[int(attempt)-1] != 'O' and self.board_state[int(attempt)-1] != 'X':
+                        return int(attempt)-1
 
                 print(f' The value \'{attempt}\', is not valid. Try {accepted_chars}..')
             except Exception as e:

@@ -1,4 +1,5 @@
 from ttt import ttt_board
+from string import digits
 
 class embedded_ttt_board(ttt_board):
     def __init__(self):
@@ -6,7 +7,6 @@ class embedded_ttt_board(ttt_board):
         self.board_state = []
         for i in range(9):
             self.board_state.append(ttt_board())
-            self.board_state[i].toggle_clear_scr()
 
     def print_board(self):
         for i in range(3):
@@ -29,6 +29,26 @@ class embedded_ttt_board(ttt_board):
             board =  self.get_validated_board()
         return int(board)
 
+    def check_winner(self):
+        '''
+        Checks all winning move possiblities, and for stalemate.
+        Changes winner accordingly.
+        '''
+        player = 'X' if self.xTurn else 'O'
+        for i in range(3):
+            # Row check.
+            if self.board_state[i*3].winner == self.board_state[i*3+1].winner == self.board_state[i*3+2].winner == player:
+                self.winner = player
+            # Column check.
+            if self.board_state[i].winner == self.board_state[i+3].winner == self.board_state[i+6].winner == player:
+                self.winner = player
+
+        # Diagonals.
+        if self.board_state[0].winner == self.board_state[4].winner == self.board_state[8].winner == player:
+            self.winner = player
+        if self.board_state[2].winner == self.board_state[4].winner == self.board_state[6].winner == player:
+            self.winner = player
+
     def initiate_game(self):
         while self.winner == '':
             # print_board
@@ -40,5 +60,9 @@ class embedded_ttt_board(ttt_board):
             self.board_state[board].board_state[move] = 'X' if self.xTurn else 'O'
             #Check winner on said board
             self.board_state[board].check_winner()
+            # Check emb_ttt winner
+            self.check_winner()
             # Change player
             self.xTurn = not self.xTurn
+        print('\n 3 in a row!!!')
+        print(f' The winner is {self.winner}!')

@@ -9,6 +9,7 @@ class embedded_ttt_board(ttt_board):
             self.board_state.append(ttt_board())
 
     def print_board(self):
+        self.clear_screen()
         for i in range(3):
             for j in range(3):
                 print(f'\

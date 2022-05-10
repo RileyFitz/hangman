@@ -15,7 +15,7 @@ class embedded_ttt_board(ttt_board):
                 print(f'\
  {self.board_state[i*3].board_state[j*3]}|{self.board_state[i*3].board_state[j*3+1]}|{self.board_state[i*3].board_state[j*3+2]} | \
  {self.board_state[i*3+1].board_state[j*3]}|{self.board_state[i*3+1].board_state[j*3+1]}|{self.board_state[i*3+1].board_state[j*3+2]} | \
- {self.board_state[i*3+1].board_state[j*3]}|{self.board_state[i*3+2].board_state[j*3+1]}|{self.board_state[i*3+2].board_state[j*3+2]}')
+ {self.board_state[i*3+2].board_state[j*3]}|{self.board_state[i*3+2].board_state[j*3+1]}|{self.board_state[i*3+2].board_state[j*3+2]}')
             if i != 2:
                 print('~~~~~~~~~~~~~~~~~~~~~~~~~')
 

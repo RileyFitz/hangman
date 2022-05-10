@@ -65,6 +65,8 @@ class embedded_ttt_board(ttt_board):
             # Make move on validated board.
             move = self.board_state[board].get_validated_move()
             self.board_state[board].board_state[move] = 'X' if self.xTurn else 'O'
+            # Change player on selected board, necessary for the winner check.
+            self.board_state[board].xTurn = True if self.xTurn else False
             #Check winner on said board
             self.board_state[board].check_winner()
             # Check emb_ttt winner

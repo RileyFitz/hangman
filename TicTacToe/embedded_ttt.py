@@ -19,7 +19,7 @@ class embedded_ttt_board(ttt_board):
             if i != 2:
                 print('~~~~~~~~~~~~~~~~~~~~~~~~~')
         print(f'It is {"X" if self.xTurn else "O"}\'s turn!')
-        
+
     def get_validated_board(self):
         '''
         Returns an int representing a valid board without a winner.
@@ -74,8 +74,7 @@ class embedded_ttt_board(ttt_board):
             self.check_winner()
             # Change player
             self.xTurn = not self.xTurn
-        print('\n 3 boards in a row!!!')
-        print(f' The winner is {self.winner}!')
+        self.conclude_game()
 
 if __name__=='__main__':
     game = embedded_ttt_board()

@@ -74,6 +74,20 @@ class ttt_board():
                 print(f' Huh... you were able to get the following error..\n{e}\n')
                 print(f' However, this is not valid. Try {accepted_chars}..')
 
+    def conclude_game(self):
+        '''
+        Call when a game has been concluded.
+        Checks winner status and prints out a correlating message
+        Flips turn state for clarity. As end of game, this no longer matters.
+        '''
+        self.xTurn = not self.xTurn
+        self.print_board()
+        if self.winner is not 'T':
+            print(f'\nThe winner is {self.winner}!\nCongratz!')
+        else:
+            print(f'\nUh-oh.. There appears to be no winner!\nThe game is a draw!')
+        print('\nPlease play another game! :D')
+
     def initiate_game(self):
         '''
         This starts an entire self hosted game.
@@ -86,9 +100,7 @@ class ttt_board():
             self.board_state[move] = 'X' if self.xTurn else 'O'
             self.check_winner()
             self.xTurn = not self.xTurn
-        self.print_board()
-        print('\n 3 in a row!!!')
-        print(f' The winner is {self.winner}!')
+        self.conclude_game()
 
 if __name__=='__main__':
     game = ttt_board()

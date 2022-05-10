@@ -18,6 +18,7 @@ class ttt_board():
             print(f' {self.board_state[i*3]} | {self.board_state[i*3+1]} | {self.board_state[i*3+2]}')
             print(' __|___|__')
         print(f' {self.board_state[6]} | {self.board_state[7]} | {self.board_state[8]}')
+        print(f'It is {"X" if self.xTurn else "O"}\'s turn!')
 
     def clear_screen(self):
         if name == 'nt':

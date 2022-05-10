@@ -18,7 +18,8 @@ class embedded_ttt_board(ttt_board):
  {self.board_state[i*3+2].board_state[j*3]}|{self.board_state[i*3+2].board_state[j*3+1]}|{self.board_state[i*3+2].board_state[j*3+2]}')
             if i != 2:
                 print('~~~~~~~~~~~~~~~~~~~~~~~~~')
-
+        print(f'It is {"X" if self.xTurn else "O"}\'s turn!')
+        
     def get_validated_board(self):
         '''
         Returns an int representing a valid board without a winner.

@@ -18,7 +18,6 @@ class ttt_board():
             print(f' {self.board_state[i*3]} | {self.board_state[i*3+1]} | {self.board_state[i*3+2]}')
             print(' __|___|__')
         print(f' {self.board_state[6]} | {self.board_state[7]} | {self.board_state[8]}')
-        print(f'It is {"X" if self.xTurn else "O"}\'s turn!')
 
     def clear_screen(self):
         if name == 'nt':
@@ -73,6 +72,8 @@ class ttt_board():
             except Exception as e:
                 print(f' Huh... you were able to get the following error..\n{e}\n')
                 print(f' However, this is not valid. Try {accepted_chars}..')
+    def print_whose_turn(self):
+        print(f'It is {"X" if self.xTurn else "O"}\'s turn!')
 
     def conclude_game(self):
         '''
@@ -80,7 +81,6 @@ class ttt_board():
         Checks winner status and prints out a correlating message
         Flips turn state for clarity. As end of game, this no longer matters.
         '''
-        self.xTurn = not self.xTurn
         self.print_board()
         if self.winner is not 'T':
             print(f'\nThe winner is {self.winner}!\nCongratz!')
@@ -96,6 +96,7 @@ class ttt_board():
         '''
         while self.winner == "":
             self.print_board()
+            self.print_whose_turn()
             move = self.get_validated_move()
             self.board_state[move] = 'X' if self.xTurn else 'O'
             self.check_winner()

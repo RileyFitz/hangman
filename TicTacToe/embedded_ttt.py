@@ -18,7 +18,6 @@ class embedded_ttt_board(ttt_board):
  {self.board_state[i*3+2].board_state[j*3]}|{self.board_state[i*3+2].board_state[j*3+1]}|{self.board_state[i*3+2].board_state[j*3+2]}')
             if i != 2:
                 print('~~~~~~~~~~~~~~~~~~~~~~~~~')
-        print(f'It is {"X" if self.xTurn else "O"}\'s turn!')
 
     def get_validated_board(self):
         '''
@@ -61,6 +60,7 @@ class embedded_ttt_board(ttt_board):
         while self.winner == '':
             # print_board
             self.print_board()
+            self.print_whose_turn()
             # get emb_board input
             board = self.get_validated_board()
             # Make move on validated board.

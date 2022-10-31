@@ -4,14 +4,20 @@ class Card():
     def __init__(self, suit, value):
         self.suit = suit
         self.value = value
+
+    def print_vals(self):
+        print(f'{self.value} of {self.suit}')
+
+    def return_vals(self):
+        return value, suit
         
 class Deck():
     def __init__(self):
         self.deck_list = self.generate_deck()
 
     def generate_deck(self):
-        suits = ['spade', 'clubs', 'diamonds', 'hearts']
-        values = ['2','3','4','5','6','7','8','9','10','J','Q','K','A']
+        suits = ['spades', 'clubs', 'diamonds', 'hearts']
+        values = ['2','3','4','5','6','7','8','9','10','Jack','Queen','King','Ace']
         deck = []
         for suit in suits:
             for value in values:

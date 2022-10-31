@@ -5,7 +5,7 @@ class ttt_board():
     def __init__(self):
         self.xTurn = True
         self.winner = ""
-        self.board_state = ["1","2","3","4","5","6", "7","8","9"]
+        self.board_state = ["1","2","3","4","5","6","7","8","9"]
         self.clear_scr = True
 
     def print_board(self):
@@ -72,6 +72,7 @@ class ttt_board():
             except Exception as e:
                 print(f' Huh... you were able to get the following error..\n{e}\n')
                 print(f' However, this is not valid. Try {accepted_chars}..')
+
     def print_whose_turn(self):
         print(f'It is {"X" if self.xTurn else "O"}\'s turn!')
 
@@ -79,7 +80,6 @@ class ttt_board():
         '''
         Call when a game has been concluded.
         Checks winner status and prints out a correlating message
-        Flips turn state for clarity. As end of game, this no longer matters.
         '''
         self.print_board()
         if self.winner is not 'T':

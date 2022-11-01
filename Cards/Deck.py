@@ -39,3 +39,5 @@ class Deck():
     def reset_deck(self):
         self.deck_list = self.generate_deck()
 
+    def pop(self):
+        return self.deck_list.pop()

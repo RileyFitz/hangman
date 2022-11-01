@@ -1,4 +1,4 @@
-from random import randint
+from random import shuffle
 
 class Card():
     def __init__(self, suit, value):
@@ -25,11 +25,7 @@ class Deck():
         return deck
         
     def shuffle_deck(self):
-        for i in range(len(self.deck_list)):
-            new_spot = randint(0,len(self.deck_list)-1)
-            temp = self.deck_list[i]
-            self.deck_list[i] = self.deck_list[new_spot]
-            self.deck_list[new_spot] = temp
+        return shuffle(self.deck_list)
 
     def list_deck(self, num=1):
         if num=='all':

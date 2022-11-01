@@ -28,8 +28,11 @@ class Deck():
         return shuffle(self.deck_list)
 
     def list_deck(self, num=1):
-        if num=='all':
+        if num=='all' or (num > len(self.deck_list)):
             num = len(self.deck_list)
+        if not isinstance(num, int):
+            print(f'{num} is not valid number for listing the cards')
+        
         for i in range(num):
             self.deck_list[i].print_card()
 

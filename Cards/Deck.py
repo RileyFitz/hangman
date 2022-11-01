@@ -5,7 +5,7 @@ class Card():
         self.suit = suit
         self.value = value
 
-    def print_vals(self):
+    def print_card(self):
         print(f'{self.value} of {self.suit}')
 
     def return_vals(self):
@@ -30,3 +30,10 @@ class Deck():
             temp = self.deck_list[i]
             self.deck_list[i] = self.deck_list[new_spot]
             self.deck_list[new_spot] = temp
+
+    def list_deck(self, num=1):
+        if num=='all':
+            num = len(self.deck_list)
+        for i in range(num):
+            self.deck_list[i].print_card()
+

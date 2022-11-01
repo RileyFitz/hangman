@@ -33,3 +33,6 @@ class Deck():
         for i in range(num):
             self.deck_list[i].print_card()
 
+    def reset_deck(self):
+        self.deck_list = self.generate_deck()
+

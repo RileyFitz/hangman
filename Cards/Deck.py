@@ -7,8 +7,16 @@ class Card():
         self.color = color
 
     def __repr__(self):
-        return f'{self.value} of {self.suit}'
+        guide = {"spades": "♠", "diamonds": "♦", "clubs": "♣", "hearts": "♥"}
+        rtnSuit = guide[self.suit]
+        rtnLet = self.value[0].upper()
+        if rtnLet == "1":
+            rtnLet = "10"
+        return f'{rtnLet}{rtnSuit}'
 
+    def long(self):
+        return f'{self.value} of {self.suit}'
+	
 class Deck():
     def __init__(self):
         self.deck_list = self.generate_deck()

@@ -14,7 +14,7 @@ class Deck():
         self.deck_list = self.generate_deck()
 
     def generate_deck(self):
-        suits = ['spades', 'clubs', 'diamonds', 'hearts']
+        suits = ['spades', 'diamonds', 'clubs', 'hearts']
         values = ['2','3','4','5','6','7','8','9','10','Jack','Queen','King','Ace']
         deck = []
         for idx, suit in enumerate(suits):

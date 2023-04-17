@@ -6,12 +6,9 @@ class Card():
         self.value = value
         self.color = color
 
-    def print_card(self):
-        print(f'{self.value} of {self.suit}')
+    def __repr__(self):
+        return f'{self.value} of {self.suit}'
 
-    def return_vals(self):
-        return value, suit, color
-        
 class Deck():
     def __init__(self):
         self.deck_list = self.generate_deck()
@@ -35,10 +32,10 @@ class Deck():
             print(f'{num} is not valid number for listing the cards')
         
         for i in range(num):
-            self.deck_list[len(self.deck_list)-(i+1)].print_card()
+            print(self.deck_list[len(self.deck_list)-(i+1)])
 
     def reset_deck(self):
         self.deck_list = self.generate_deck()
 
     def pop(self):
-        return self.deck_list.pop().print_card()
+        return self.deck_list.pop()

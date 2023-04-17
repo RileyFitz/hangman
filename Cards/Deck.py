@@ -35,7 +35,7 @@ class Deck():
             print(f'{num} is not valid number for listing the cards')
         
         for i in range(num):
-            self.deck_list[i].print_card()
+            self.deck_list[len(self.deck_list)-(i+1)].print_card()
 
     def reset_deck(self):
         self.deck_list = self.generate_deck()

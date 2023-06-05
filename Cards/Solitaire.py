@@ -1,10 +1,13 @@
-from Deck import Deck
+from .. import Deck
 
 class Solitaire():
     def __init__(self):
         self.deck = Deck()
         self.board = [[],[],[],[],[],[],[]]
-        for i in range(7):
-            for j in range(i,7):
-                self.board[j].append(self.deck.pop())
+        
+        def serve_fresh_deal():
+            self.deck.reset_deck()
+            for rows in range(7):
+                for columns in range(rows,7):
+                    self.board[columns].append(self.deck.pop())
 

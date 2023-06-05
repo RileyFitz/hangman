@@ -1,4 +1,4 @@
-from .. import Deck
+from Deck import Deck
 
 class Solitaire():
     def __init__(self):

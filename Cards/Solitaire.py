@@ -5,7 +5,7 @@ class Solitaire():
         self.deck = Deck()
         self.board = [[],[],[],[],[],[],[]]
         
-    def serve_fresh_deal(self):
+    def fresh_deal(self):
         self.deck.reset_deck()
         for rows in range(7):
             for columns in range(rows,7):
@@ -13,7 +13,7 @@ class Solitaire():
 def main():
     """Set up game steps"""
     x = Solitaire()
-    x.serve_fresh_deal()
+    x.fresh_deal()
     print("main")
 
 if __name__=="__main__":

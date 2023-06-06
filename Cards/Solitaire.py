@@ -25,7 +25,7 @@ class Solitaire():
             row = ""
 
     def print_aces(self):
-        print("Spades  Hearts  Dmnds  clubs")
+        print("Spades  Hearts  Dmnds  Clubs")
         rtn_str = ""
         for i in range(4):
             if len(self.aces)==1:

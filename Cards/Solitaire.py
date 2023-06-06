@@ -5,6 +5,7 @@ class Solitaire():
     def __init__(self):
         self.deck = Deck()
         self.board = [[],[],[],[],[],[],[]]
+        self.aces = [[],[],[],[]]
         self.win = False
         
     def fresh_deal(self):
@@ -22,6 +23,16 @@ class Solitaire():
                 row += print_board_object[i][j] + "  "
             print(row)
             row = ""
+
+    def print_aces(self):
+        print("Spades  Hearts  Dmnds  clubs")
+        rtn_str = ""
+        for i in range(4):
+            if len(self.aces)==1:
+                rnt_str += self.aces[0][i] + "      "
+            else:
+                rtn_str += "Empty   "
+        print(rtn_str)
 
     def gather_print_board_object(self):
         print_board = []
@@ -42,7 +53,8 @@ def main():
     game = Solitaire()
     game.fresh_deal()
     #while not game.win:
-    ##print_board
+    game.print_board()
+    game.print_aces()
     ##get and validate user input
     ##validate and users move
     ##check win

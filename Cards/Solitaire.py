@@ -10,6 +10,7 @@ class Solitaire():
         
     def fresh_deal(self):
         self.deck.reset_deck()
+        self.deck.shuffle_deck()
         for rows in range(7):
             for columns in range(rows,7):
                 self.board[columns].append(self.deck.pop())

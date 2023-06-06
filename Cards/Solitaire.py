@@ -13,7 +13,18 @@ class Solitaire():
                 self.board[columns].append(self.deck.pop())
 
     def print_board(self):
-        pass
+        print_board = []
+        for i in range(7):
+            print_board.append(["  "]*self.find_max_list())
+            #shouldnt be 13, should be longest list in board
+        for i in range(len(self.board)):
+            for j in range(len(self.board[i])):
+                print_board[i][j] = self.board[i][j]
+        print(print_board)
+
+    def find_max_list(self):
+        list_len = [len(i) for i in self.board]
+        return max(list_len)
 
 def main():
     """Set up game steps"""

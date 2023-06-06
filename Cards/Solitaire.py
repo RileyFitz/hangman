@@ -28,8 +28,8 @@ class Solitaire():
         print("Spades  Hearts  Dmnds  Clubs")
         rtn_str = ""
         for i in range(4):
-            if len(self.aces)==1:
-                rnt_str += self.aces[0][i] + "      "
+            if len(self.aces[i])==1:
+                rtn_str += self.aces[0][i].short() + "      "
             else:
                 rtn_str += "Empty   "
         print(rtn_str)

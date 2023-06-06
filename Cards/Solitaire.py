@@ -13,6 +13,16 @@ class Solitaire():
                 self.board[columns].append(self.deck.pop())
 
     def print_board(self):
+        colm_labels = "1   2   3   4   5   6   7"
+        print_board_object = self.gather_print_board_object()
+        row = ""
+        for j in range(self.find_max_list()):
+            for i in range(7):
+                row =+ print_board_object[i][j]
+            print(row)
+            row = ""
+
+    def gather_print_board_object(self):
         print_board = []
         for i in range(7):
             print_board.append(["  "]*self.find_max_list())
@@ -20,7 +30,7 @@ class Solitaire():
         for i in range(len(self.board)):
             for j in range(len(self.board[i])):
                 print_board[i][j] = self.board[i][j]
-        print(print_board)
+        return print_board
 
     def find_max_list(self):
         list_len = [len(i) for i in self.board]

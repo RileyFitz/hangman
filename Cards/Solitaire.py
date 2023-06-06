@@ -1,4 +1,5 @@
 from Deck import Deck
+from string import ascii_uppercase
 
 class Solitaire():
     def __init__(self):
@@ -13,10 +14,10 @@ class Solitaire():
                 self.board[columns].append(self.deck.pop())
 
     def print_board(self):
-        print("1   2   3   4   5   6   7")
+        print("   1   2   3   4   5   6   7")
         print_board_object = self.gather_print_board_object()
-        row = ""
         for j in range(self.find_max_list()):
+            row = ascii_uppercase[j] + "  "
             for i in range(7):
                 row += print_board_object[i][j] + "  "
             print(row)

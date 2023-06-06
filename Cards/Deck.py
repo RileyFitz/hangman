@@ -7,6 +7,9 @@ class Card():
         self.color = color
 
     def __repr__(self):
+        return self.short()
+
+    def short(self):
         guide = {"spades": "♠", "diamonds": "♦", "clubs": "♣", "hearts": "♥"}
         rtnSuit = guide[self.suit]
         rtnLet = self.value[0].upper()

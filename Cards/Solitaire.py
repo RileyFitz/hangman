@@ -61,9 +61,9 @@ class Solitaire():
         valid_to = False
         while not valid_move:
             while not valid_from:
-                move_from_row, move_from_col = self.get_valid_input()
-                valid_from = self.validate_move_from(move_from_row, move_from_col) # Exist, and revealed
-            move_to_row, move_to_col = self.get_valid_input()
+                move_from_row, move_from_col = self.get_valid_move_input()
+                valid_from = self.validate_move_from(move_from_row, move_from_col)
+            move_to_row, move_to_col = self.get_valid_move_input()
             #valid_to = self.validate_move_to(move_to_row, move_to_col) # exists, top of stack, opposite color of move card
             #valid_move = valid_from and valid_to
             valid_move = True # for dev
@@ -81,13 +81,31 @@ class Solitaire():
             print("This position does not contain a card. Try again.")
             return False
     
-    def get_valid_input(self):
+    def get_valid_move_input(self):
         while True:
             user_input = input("Enter a 2-character string (letter and number): ")
             if len(user_input) == 2 and user_input[0].isalpha() and user_input[1].isdigit():
                 return int(ord(user_input[0]) - ord('a')), int(user_input[1])-1
             else:
                 print("Invalid input. Please try again.")
+    
+    def user_action(self):
+        print("Please choose to pop the deck(1) or make a move(2)")
+        action = self.get_user_action()
+        if (action == 1):
+            print("Popping has not yet been implemented")
+        else:
+            self.get_valid_user_move()
+
+    def get_user_action(self):
+        while True:
+            user_input = input("Enter 1(pop) or 2(move): ")
+
+            if user_input == "1" or user_input == "2":
+                return user_input
+            else:
+                print("Invalid input. Please enter 1 or 2.")
+
 
 def main():
     """Set up game steps"""
@@ -96,6 +114,8 @@ def main():
     #while not game.win:
     game.print_board()
     game.print_aces()
+    # Decide pop or move
+    game.user_action()
     ##get and validate user input
     game.get_valid_user_move()
     ##check win

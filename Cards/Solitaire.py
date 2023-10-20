@@ -54,6 +54,40 @@ class Solitaire():
     def find_max_list(self):
         list_len = [len(i) for i in self.board]
         return max(list_len)
+    
+    def get_valid_user_move(self):
+        valid_move = False
+        valid_from = False
+        valid_to = False
+        while not valid_move:
+            while not valid_from:
+                move_from_row, move_from_col = self.get_valid_input()
+                valid_from = self.validate_move_from(move_from_row, move_from_col) # Exist, and revealed
+            move_to_row, move_to_col = self.get_valid_input()
+            #valid_to = self.validate_move_to(move_to_row, move_to_col) # exists, top of stack, opposite color of move card
+            #valid_move = valid_from and valid_to
+            valid_move = True # for dev
+        # Move cards and any that may lie below, AKA moving stacks.
+
+    def validate_move_from(self, row, col):
+        # Check if card exists, and is revealed.
+        try:
+            # If spot has revealed attribute, it exists.
+            if (self.board[col][row].revealed):
+                return True
+            print("This card has not been revealed yet. Try again.")
+            return False
+        except:
+            print("This position does not contain a card. Try again.")
+            return False
+    
+    def get_valid_input(self):
+        while True:
+            user_input = input("Enter a 2-character string (letter and number): ")
+            if len(user_input) == 2 and user_input[0].isalpha() and user_input[1].isdigit():
+                return int(ord(user_input[0]) - ord('a')), int(user_input[1])-1
+            else:
+                print("Invalid input. Please try again.")
 
 def main():
     """Set up game steps"""
@@ -63,7 +97,7 @@ def main():
     game.print_board()
     game.print_aces()
     ##get and validate user input
-    ##validate and users move
+    game.get_valid_user_move()
     ##check win
     print("main")
 

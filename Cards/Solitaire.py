@@ -14,8 +14,14 @@ class Solitaire():
         for rows in range(7):
             for columns in range(rows,7):
                 self.board[columns].append(self.deck.pop())
+        for card in self.deck.deck_list:
+            card.revealed = True
+        
 
     def print_board(self):
+        for column in self.board:
+            if len(column) > 0:
+                column[-1].revealed = True
         print("   1    2    3    4    5    6    7")
         print_board_object = self.gather_print_board_object()
         for j in range(self.find_max_list()):

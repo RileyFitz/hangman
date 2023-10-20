@@ -5,17 +5,20 @@ class Card():
         self.suit = suit
         self.value = value
         self.color = color
+        self.revealed = False
 
     def __repr__(self):
         return self.short()
 
     def short(self):
-        guide = {"spades": "♠", "diamonds": "♦", "clubs": "♣", "hearts": "♥"}
-        rtnSuit = guide[self.suit]
-        rtnLet = self.value[0].upper()
-        if rtnLet == "1":
-            rtnLet = "10"
-        return f'{rtnLet}{rtnSuit}'
+        if (self.revealed):
+            guide = {"spades": "♠", "diamonds": "♦", "clubs": "♣", "hearts": "♥"}
+            rtnSuit = guide[self.suit]
+            rtnLet = self.value[0].upper()
+            if rtnLet == "1":
+                rtnLet = "10"
+            return f'{rtnLet}{rtnSuit}'
+        return "■■"
 
     def long(self):
         return f'{self.value} of {self.suit}'

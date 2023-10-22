@@ -18,7 +18,6 @@ class Solitaire():
                 self.board[columns].append(self.deck.pop())
         for card in self.deck.deck_list:
             card.revealed = True
-        
 
     def print_board(self):
         print('BOARD')
@@ -108,10 +107,16 @@ class Solitaire():
     def user_action(self):
         print("Please choose to pop the stock(1) or make a move(2)")
         action = self.get_user_action()
-        if (action == 1):
-            print("Popping has not yet been implemented")
+        if (action == "1"):
+            self.temp_stock.append(self.deck.pop())
         else:
             self.get_valid_user_move()
+
+    def reset_stock(self):
+        self.stock_flips += 1
+        self.temp_stock.reverse()
+        self.deck.deck_list = self.temp_stock
+        self.temp_stock = []
 
     def get_user_action(self):
         while True:

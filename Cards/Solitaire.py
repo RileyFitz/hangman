@@ -7,6 +7,8 @@ class Solitaire():
         self.board = [[],[],[],[],[],[],[]]
         self.aces = [[],[],[],[]]
         self.win = False
+        self.temp_stock = []
+        self.stock_flips = 0
         
     def fresh_deal(self):
         self.deck.reset_deck()
@@ -19,6 +21,7 @@ class Solitaire():
         
 
     def print_board(self):
+        print('BOARD')
         for column in self.board:
             if len(column) > 0:
                 column[-1].revealed = True
@@ -30,8 +33,10 @@ class Solitaire():
                 row += print_board_object[i][j] + "  "
             print(row)
             row = ""
+        print('\n')
 
     def print_aces(self):
+        print("ACES")
         print("Spades  Hearts  Dmnds  Clubs")
         rtn_str = ""
         for i in range(4):
@@ -40,9 +45,17 @@ class Solitaire():
             else:
                 rtn_str += "Empty   "
         print(rtn_str)
+        print('\n')
 
     def print_stock(self):
-        print("Stock in process...")
+        print('STOCK')
+        try:
+            print(f'Top of Stock: {self.temp_stock[-1]}')
+        except:
+            print(f'No stock card is flipped yet, pop one!')
+        print(f'There are {len(self.deck.deck_list)} cards left in the stock')
+        print(f'You have flipped the stock {self.stock_flips} times')
+        print('\n')
 
     def generate_print_board_object(self):
         print_board = []

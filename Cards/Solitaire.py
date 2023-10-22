@@ -23,7 +23,7 @@ class Solitaire():
             if len(column) > 0:
                 column[-1].revealed = True
         print("   1    2    3    4    5    6    7")
-        print_board_object = self.gather_print_board_object()
+        print_board_object = self.generate_print_board_object()
         for j in range(self.find_max_list()):
             row = ascii_uppercase[j] + "  "
             for i in range(7):
@@ -41,7 +41,7 @@ class Solitaire():
                 rtn_str += "Empty   "
         print(rtn_str)
 
-    def gather_print_board_object(self):
+    def generate_print_board_object(self):
         print_board = []
         for i in range(7):
             print_board.append(["   "]*self.find_max_list())

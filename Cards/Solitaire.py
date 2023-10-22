@@ -135,10 +135,7 @@ def main():
     game.display_board()
     # Decide pop or move
     game.user_action()
-    ##get and validate user input
-    game.get_valid_user_move()
-    ##check win
-    print("main")
+    # Check win
 
 if __name__=="__main__":
     main()

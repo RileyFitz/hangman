@@ -41,6 +41,9 @@ class Solitaire():
                 rtn_str += "Empty   "
         print(rtn_str)
 
+    def print_stock(self):
+        print("Stock in process...")
+
     def generate_print_board_object(self):
         print_board = []
         for i in range(7):
@@ -90,7 +93,7 @@ class Solitaire():
                 print("Invalid input. Please try again.")
     
     def user_action(self):
-        print("Please choose to pop the deck(1) or make a move(2)")
+        print("Please choose to pop the stock(1) or make a move(2)")
         action = self.get_user_action()
         if (action == 1):
             print("Popping has not yet been implemented")
@@ -106,14 +109,17 @@ class Solitaire():
             else:
                 print("Invalid input. Please enter 1 or 2.")
 
+    def display_board(self):
+        self.print_board()
+        self.print_aces()
+        self.print_stock()
 
 def main():
     """Set up game steps"""
     game = Solitaire()
     game.fresh_deal()
     #while not game.win:
-    game.print_board()
-    game.print_aces()
+    game.display_board()
     # Decide pop or move
     game.user_action()
     ##get and validate user input

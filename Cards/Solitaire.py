@@ -78,8 +78,11 @@ class Solitaire():
             while not valid_from:
                 move_from_row, move_from_col = self.get_valid_move_input(True)
                 valid_from = self.validate_move_from(move_from_row, move_from_col)
-            move_to_row, move_to_col = self.get_valid_move_input(False)
-            #valid_to = self.validate_move_to(move_to_row, move_to_col) # exists, top of stack, opposite color of move card
+            while not valid_to:
+                move_to_row, move_to_col = self.get_valid_move_input(False)
+                # exists, top of stack, opposite color of move card
+                #valid_to = self.validate_move_to(move_to_row, move_to_col) 
+                valid_to = True # For Dev
             #valid_move = valid_from and valid_to
             valid_move = True # for dev
         # Move cards and any that may lie below, AKA moving stacks.
@@ -114,6 +117,11 @@ class Solitaire():
             if (isFrom):
                 if (user_input.upper() == "ST"):
                     return -1, 0
+            # To moves include Aces
+            if (not isFrom and user_input[0].upper() == "A" and user_input.isalpha()):
+                aces_dict = {"S":-1, "H":-2, "D":-3, "C":-4}
+                return -1, aces_dict[user_input[1].upper()]
+
             if len(user_input) == 2 and user_input[0].isalpha() and user_input[1].isdigit():
                 return int(ord(user_input[0]) - ord('a')), int(user_input[1])-1
             else:

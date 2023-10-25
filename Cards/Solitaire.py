@@ -36,13 +36,13 @@ class Solitaire():
 
     def print_aces(self):
         print("ACES")
-        print("Spades  Hearts  Dmnds  Clubs")
+        print("Spades(AS)  Hearts(AH)  Dmnds(AD)  Clubs(AC)")
         rtn_str = ""
         for i in range(4):
             if len(self.aces[i])==1:
                 rtn_str += self.aces[0][i].short() + "      "
             else:
-                rtn_str += "Empty   "
+                rtn_str += "Empty       "
         print(rtn_str)
         print('\n')
 

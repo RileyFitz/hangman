@@ -85,14 +85,17 @@ class Solitaire():
         # Move cards and any that may lie below, AKA moving stacks.
 
     def validate_move_from(self, row, col):
-        # If stock card choosen from, ensure there is top of stock
+        # If stock card choosen
         if (row == -1):
             try:
                 if (self.temp_stock[-1]):
                     return True
             except:
-                print("There is no stock. Please pop one.")
+                self.pop_stock()
+                self.display_board()
+                print("Stock was popped for you, try again.")
                 return False
+        
         # Check if card exists, and is revealed.
         try:
             # If spot has revealed attribute, it exists.
@@ -120,15 +123,18 @@ class Solitaire():
         print("Please choose to pop the stock(1) or make a move(2)")
         action = self.get_user_action()
         if (action == "1"):
-            self.temp_stock.append(self.deck.pop())
+            self.pop_stock()
         else:
             self.get_valid_user_move()
 
-    def reset_stock(self):
-        self.stock_flips += 1
-        self.temp_stock.reverse()
-        self.deck.deck_list = self.temp_stock
-        self.temp_stock = []
+    def pop_stock(self):
+        if (len(self.deck.deck_list) > 0):
+            self.temp_stock.append(self.deck.pop())
+        else:
+            self.stock_flips += 1
+            self.temp_stock.reverse()
+            self.deck.deck_list = self.temp_stock
+            self.temp_stock = []
 
     def get_user_action(self):
         while True:

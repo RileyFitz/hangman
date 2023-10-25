@@ -49,7 +49,7 @@ class Solitaire():
     def print_stock(self):
         print('STOCK')
         try:
-            print(f'Top of Stock: {self.temp_stock[-1]}')
+            print(f'Top of Stock: {self.temp_stock[-1]} (ST)')
         except:
             print(f'No stock card is flipped yet, pop one!')
         print(f'There are {len(self.deck.deck_list)} cards left in the stock')
@@ -76,15 +76,23 @@ class Solitaire():
         valid_to = False
         while not valid_move:
             while not valid_from:
-                move_from_row, move_from_col = self.get_valid_move_input()
+                move_from_row, move_from_col = self.get_valid_move_input(True)
                 valid_from = self.validate_move_from(move_from_row, move_from_col)
-            move_to_row, move_to_col = self.get_valid_move_input()
+            move_to_row, move_to_col = self.get_valid_move_input(False)
             #valid_to = self.validate_move_to(move_to_row, move_to_col) # exists, top of stack, opposite color of move card
             #valid_move = valid_from and valid_to
             valid_move = True # for dev
         # Move cards and any that may lie below, AKA moving stacks.
 
     def validate_move_from(self, row, col):
+        # If stock card choosen from, ensure there is top of stock
+        if (row == -1):
+            try:
+                if (self.temp_stock[-1]):
+                    return True
+            except:
+                print("There is no stock. Please pop one.")
+                return False
         # Check if card exists, and is revealed.
         try:
             # If spot has revealed attribute, it exists.
@@ -96,9 +104,13 @@ class Solitaire():
             print("This position does not contain a card. Try again.")
             return False
     
-    def get_valid_move_input(self):
+    def get_valid_move_input(self, isFrom):
         while True:
             user_input = input("Enter a 2-character string (letter and number): ")
+            # From moves include Stock
+            if (isFrom):
+                if (user_input.upper() == "ST"):
+                    return -1, 0
             if len(user_input) == 2 and user_input[0].isalpha() and user_input[1].isdigit():
                 return int(ord(user_input[0]) - ord('a')), int(user_input[1])-1
             else:

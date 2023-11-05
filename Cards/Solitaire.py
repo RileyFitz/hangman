@@ -78,14 +78,45 @@ class Solitaire():
             while not valid_from:
                 move_from_row, move_from_col = self.get_valid_move_input(True)
                 valid_from = self.validate_move_from(move_from_row, move_from_col)
-            while not valid_to:
-                move_to_row, move_to_col = self.get_valid_move_input(False)
-                # exists, top of stack, opposite color of move card
-                #valid_to = self.validate_move_to(move_to_row, move_to_col) 
-                valid_to = True # For Dev
-            #valid_move = valid_from and valid_to
-            valid_move = True # for dev
+            move_to_row, move_to_col = self.get_valid_move_input(False)
+            valid_to = self.validate_move_to(move_to_row, move_to_col, move_from_row, move_from_col) 
+            valid_move = valid_from and valid_to
         # Move cards and any that may lie below, AKA moving stacks.
+
+    def validate_move_to(self, trow, tcol, frow, fcol):
+        from_card = self.get_card(True, frow, fcol)
+        to_card = self.get_card(False, trow, tcol)
+        if (to_card == []): # If empty Ace 
+            if (from_card.value == "Ace"):
+                return True
+            else:
+                return False
+
+        # Not same card
+        if (from_card != to_card): 
+            # Colors are different
+            if (from_card.color != to_card.color): 
+                # to card is top of stack
+                if (self.board[trow][-1] == to_card): 
+                    # From is one less than To
+                    if (self.get_card_number(to_card)-1 == self.get_card_number(from_card)):
+                        return True
+        return False
+
+    def get_card_number(self, card):
+        card_vals = {"Ace": 1, "Jack": 11, "Queen": 12, "King":13}
+        try:
+            return int(card.value)
+        except:
+            return card_vals[card.value]
+
+    def get_card(self, isFrom, row, col):
+        if (row == -1):
+            if (isFrom):
+                return self.temp_stock[-1]
+            else: 
+                return self.aces[-col -1]
+        return self.board[row][col]
 
     def validate_move_from(self, row, col):
         # If stock card choosen

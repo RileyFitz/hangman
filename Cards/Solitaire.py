@@ -71,22 +71,18 @@ class Solitaire():
         return max(list_len)
     
     def get_valid_user_move(self):
-        valid_move = False
         valid_from = False
-        valid_to = False
-        while not valid_move:
-            while not valid_from:
-                move_from_row, move_from_col = self.get_valid_move_input(True)
-                valid_from = self.validate_move_from(move_from_row, move_from_col)
-            move_to_row, move_to_col = self.get_valid_move_input(False)
-            valid_to = self.validate_move_to(move_to_row, move_to_col, move_from_row, move_from_col) 
-            valid_move = valid_from and valid_to
-            if not valid_to:
-                print('The move FROM: '
-                    f'{self.get_card(True, move_from_row, move_from_col)} '
-                    f' and  TO: {self.get_card(False, move_to_row, move_to_col)} '
-                    'is not valid. Try again')
-                valid_from = valid_to = False
+        while not valid_from:
+            move_from_row, move_from_col = self.get_valid_move_input(True)
+            valid_from = self.validate_move_from(move_from_row, move_from_col)
+        move_to_row, move_to_col = self.get_valid_move_input(False)
+        valid_to = self.validate_move_to(move_to_row, move_to_col, move_from_row, move_from_col) 
+        if not valid_to:
+            print('The move FROM: '
+                f'{self.get_card(True, move_from_row, move_from_col)} '
+                f' and  TO: {self.get_card(False, move_to_row, move_to_col)} '
+                'is not valid. Try again')
+            return
         # Move cards and any that may lie below, AKA moving stacks.
 
     def validate_move_to(self, trow, tcol, frow, fcol):

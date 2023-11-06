@@ -27,9 +27,9 @@ class Solitaire():
         print("   1    2    3    4    5    6    7")
         print_board_object = self.generate_print_board_object()
         for j in range(self.find_max_list()):
-            row = ascii_uppercase[j] + "  "
+            row = ascii_uppercase[j] + " "*2
             for i in range(7):
-                row += print_board_object[i][j] + "  "
+                row += print_board_object[i][j] + " "*2
             print(row)
             row = ""
         print('\n')
@@ -40,9 +40,9 @@ class Solitaire():
         rtn_str = ""
         for i in range(4):
             if len(self.aces[i])==1:
-                rtn_str += self.aces[0][i].short() + "      "
+                rtn_str += self.aces[0][i].short() + " "*6
             else:
-                rtn_str += "Empty       "
+                rtn_str += "Empty" + " "*7
         print(rtn_str)
         print('\n')
 
@@ -59,7 +59,7 @@ class Solitaire():
     def generate_print_board_object(self):
         print_board = []
         for i in range(7):
-            print_board.append(["   "]*self.find_max_list())
+            print_board.append([" "*3]*self.find_max_list())
         for i in range(len(self.board)):
             for j in range(len(self.board[i])):
                 char = "" if self.board[i][j].short()[0]=="1" else " "

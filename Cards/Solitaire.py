@@ -142,8 +142,14 @@ class Solitaire():
             return False
     
     def get_valid_move_input(self, isFrom):
+        input_text = "Select a card to move "
+        if (isFrom):
+            input_text += "FROM: "
+        else:
+            input_text += "TO: "
+        
         while True:
-            user_input = input("Enter a 2-character string (letter and number): ")
+            user_input = input(input_text)
             # From moves include Stock
             if (isFrom):
                 if (user_input.upper() == "ST"):

@@ -81,6 +81,12 @@ class Solitaire():
             move_to_row, move_to_col = self.get_valid_move_input(False)
             valid_to = self.validate_move_to(move_to_row, move_to_col, move_from_row, move_from_col) 
             valid_move = valid_from and valid_to
+            if not valid_to:
+                print('The move FROM: '
+                    f'{self.get_card(True, move_from_row, move_from_col)} '
+                    f' and  TO: {self.get_card(False, move_to_row, move_to_col)} '
+                    'is not valid. Try again')
+                valid_from = valid_to = False
         # Move cards and any that may lie below, AKA moving stacks.
 
     def validate_move_to(self, trow, tcol, frow, fcol):

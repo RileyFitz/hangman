@@ -83,7 +83,19 @@ class Solitaire():
                 f' and  TO: {self.get_card(False, move_to_row, move_to_col)} '
                 'is not valid. Try again')
             return
+        self.modify_board(move_from_row, move_from_col, move_to_row, move_to_col)
+
+    def modify_board(self, frow, fcol, trow, tcol):
         # Move cards and any that may lie below, AKA moving stacks.
+        if (frow == -1): # if stock card
+            from_card = self.get_card(True, frow, fcol)
+            self.temp_stock.pop(-1) # Pop the current stock card off
+            if (trow == -1): # To Aces
+                print("DEV: from Stock to Aces")
+                self.aces[-tcol -1].append(from_card)
+                return
+            print("DEV: from Stock to Board")
+            self.board[trow].append(from_card)
 
     def validate_move_to(self, trow, tcol, frow, fcol):
         from_card = self.get_card(True, frow, fcol)

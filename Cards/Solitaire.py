@@ -70,7 +70,7 @@ class Solitaire():
         list_len = [len(i) for i in self.board]
         return max(list_len)
     
-    def get_valid_user_move(self):
+    def attempt_user_move(self):
         valid_from = False
         while not valid_from:
             move_from_row, move_from_col = self.get_valid_move_input(True)
@@ -172,7 +172,7 @@ class Solitaire():
         if (action == "1"):
             self.pop_stock()
         else:
-            self.get_valid_user_move()
+            self.attempt_user_move()
 
     def pop_stock(self):
         if (len(self.deck.deck_list) > 0):

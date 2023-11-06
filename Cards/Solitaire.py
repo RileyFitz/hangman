@@ -87,7 +87,7 @@ class Solitaire():
 
     def modify_board(self, frow, fcol, trow, tcol):
         # Move cards and any that may lie below, AKA moving stacks.
-        if (frow == -1): # if stock card
+        if (frow == -1): # If stock card
             from_card = self.get_card(True, frow, fcol)
             self.temp_stock.pop(-1) # Pop the current stock card off
             if (trow == -1): # To Aces
@@ -105,12 +105,16 @@ class Solitaire():
                 return True
             else:
                 return False
+        
+        # If from board to ace, from must be top of stack
+        if (to_card.value == "Ace" and frow != -1):
+            return self.board[frow][-1] == to_card
 
         # Not same card
         if (from_card != to_card): 
             # Colors are different
             if (from_card.color != to_card.color): 
-                # to card is top of stack
+                # To card is top of stack
                 if (self.board[trow][-1] == to_card): 
                     # From is one less than To
                     if (self.get_card_number(to_card)-1 == self.get_card_number(from_card)):

@@ -86,16 +86,25 @@ class Solitaire():
         self.modify_board(move_from_row, move_from_col, move_to_row, move_to_col)
 
     def modify_board(self, frow, fcol, trow, tcol):
-        # Move cards and any that may lie below, AKA moving stacks.
-        if (frow == -1): # If stock card
-            from_card = self.get_card(True, frow, fcol)
-            self.temp_stock.pop(-1) # Pop the current stock card off
+        if (frow == -1): # From Stock
+            from_card = self.temp_stock.pop()
             if (trow == -1): # To Aces
                 print("DEV: from Stock to Aces")
                 self.aces[-tcol -1].append(from_card)
                 return
             print("DEV: from Stock to Board")
+            # To Board
             self.board[trow].append(from_card)
+            return
+
+        # From Board
+        if (trow == -1): # To Aces
+            print("DEV: from Board to Aces")
+            from_card = self.board[frow].pop()
+            self.aces[-tcol -1].append(from_card)
+            return
+        # To Board
+        # Move cards and any that may lie below, AKA moving stacks.
 
     def validate_move_to(self, trow, tcol, frow, fcol):
         from_card = self.get_card(True, frow, fcol)
@@ -221,6 +230,7 @@ def main():
     game.display_board()
     # Decide pop or move
     game.user_action()
+    game.display_board()
     # Check win
 
 if __name__=="__main__":

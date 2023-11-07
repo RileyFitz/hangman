@@ -104,6 +104,9 @@ class Solitaire():
             self.aces[-tcol -1].append(from_card)
             return
         # To Board
+        for i in range(fcol,len(self.board[frow])):
+             self.board[trow].append(self.board[frow][fcol])
+             del self.board[frow][fcol]
         # Move cards and any that may lie below, AKA moving stacks.
 
     def validate_move_to(self, trow, tcol, frow, fcol):
@@ -226,12 +229,11 @@ def main():
     """Set up game steps"""
     game = Solitaire()
     game.fresh_deal()
-    #while not game.win:
-    game.display_board()
-    # Decide pop or move
-    game.user_action()
-    game.display_board()
-    # Check win
+    while not game.win:
+        game.display_board()
+        # Decide pop or move
+        game.user_action()
+        # Check win
 
 if __name__=="__main__":
     main()

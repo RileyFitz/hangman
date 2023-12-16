@@ -144,8 +144,11 @@ class Solitaire():
         if (row == -1):
             if (isFrom):
                 return self.temp_stock[-1]
-            else: 
-                return self.aces[-col -1]
+            else:
+                try:
+                    return self.aces[-col -1][-1]
+                except:
+                    return self.aces[-col -1]
         return self.board[row][col]
 
     def validate_move_from(self, row, col):

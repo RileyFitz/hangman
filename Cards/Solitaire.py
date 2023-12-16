@@ -40,7 +40,7 @@ class Solitaire():
         rtn_str = ""
         for i in range(4):
             if len(self.aces[i])==1:
-                rtn_str += self.aces[i][-1].short() + " "*6
+                rtn_str += self.aces[i][-1].short() + " "*10
             else:
                 rtn_str += "Empty" + " "*7
         print(rtn_str)

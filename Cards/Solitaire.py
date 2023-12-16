@@ -190,7 +190,7 @@ class Solitaire():
                 return -1, aces_dict[user_input[1].upper()]
 
             if len(user_input) == 2 and user_input[0].isalpha() and user_input[1].isdigit():
-                return int(ord(user_input[0]) - ord('a')), int(user_input[1])-1
+                return int(user_input[1])-1, int(ord(user_input[0]) - ord('a'))
             else:
                 print("Invalid input. Please try again.")
     

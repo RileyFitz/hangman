@@ -1,6 +1,13 @@
 from Deck import Deck
 from string import ascii_uppercase
 
+'''
+NEEDED IMPROVEMENTS/UNRESOLVED BUGS
+-Kings cannot be added to blank rows
+-Aces can be placed on any aces stack
+-Ace stacks disapear when appending non ace
+'''
+
 class Solitaire():
     def __init__(self):
         self.deck = Deck()

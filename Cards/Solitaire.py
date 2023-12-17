@@ -6,6 +6,8 @@ NEEDED IMPROVEMENTS/UNRESOLVED BUGS
 -Kings cannot be added to blank rows
 -Aces can be placed on any aces stack
 -Ace stacks disapear when appending non ace
+-Ace stacking needs logic to ensure from card,
+    originating from board, are top of stack
 '''
 
 class Solitaire():
@@ -124,10 +126,17 @@ class Solitaire():
                 return True
             else:
                 return False
-        
-        # If from board to ace, from must be top of stack
-        if (to_card.value == "Ace" and frow != -1):
-            return self.board[frow][-1] == to_card
+            
+        # NEED LOGIC FOR KING TO BLANK ROW
+
+        # To column implies destination is Aces
+        if (tcol<0):
+            # if same color
+            if (from_card.suit == to_card.suit):
+                # if next in order
+                if (self.get_card_number(from_card)-1 == self.get_card_number(to_card)):
+                    # Need logic to ensure card is top of stack if from board
+                    return True
 
         # Not same card
         if (from_card != to_card): 
